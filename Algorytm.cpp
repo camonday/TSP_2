@@ -10,9 +10,14 @@ int Algorytm::ZnajdzNajlepsze(Reprezentacja* przekazaneMiasta)
 void Algorytm::showWynik()
 {
 	std::cout << "\nwaga: " << waga_UB << "\nścieżka: ";
-	for (int& przystanek : sciezka_UB) {
-		std::cout << przystanek << " ";
-	}
+	//for (int& przystanek : sciezka_UB) {
+	//	std::cout << przystanek << " ";
+	//}
+}
+
+void Algorytm::setMiasta(Reprezentacja* noweMiasta)
+{
+	miasta = noweMiasta;
 }
 
 void Algorytm::ZnajdzUB()
@@ -21,6 +26,8 @@ void Algorytm::ZnajdzUB()
 	int badany = startoweMiasto;
 	int waga_pojedyncza = 0;
 	int nastepny;
+	sciezka_UB.clear();
+	waga_UB = 0;
 
 	// lista nieodwiedzonych sasiadow
 	std::list<int> nieodwiedzeni;

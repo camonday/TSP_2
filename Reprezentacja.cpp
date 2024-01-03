@@ -1,6 +1,7 @@
 ﻿#include "Reprezentacja.h"
 #include <iostream>
 #include <fstream>
+#include <string>
 
 void Reprezentacja::display() { //wyswietlanie listy od przodu i tylu
    
@@ -38,8 +39,23 @@ int Reprezentacja::loadFromFile(const std::string& FileName) {
     std::fstream file;
     file.open(FileName);
     int temp;
+    std::string linijka;
 
-    file >> size; //pierwsza liczba w pliku to rozmiar listy
+    //file >> size; //pierwsza liczba w pliku to rozmiar listy
+    getline(file, linijka); //NAME
+    getline(file, linijka); //TYPE
+    getline(file, linijka);//COMMENT
+    getline(file, linijka);//SIZE
+    size = 0;
+    for (char c : linijka) {
+        if (isdigit(c)) {
+            size *= 10;
+            size += (c - '0');
+        }
+    }
+    getline(file, linijka);//EDGE TYPE
+    getline(file, linijka); //FORMAT
+    getline(file, linijka); //SECTION
 
     for (int i = 0; i < size; i++) {
         std::vector<int> wagi;
